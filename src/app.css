@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'Neurial-Grotesk';
+    font-style: light;
+    font-weight: 300;
+    src: url('/fonts/Neurial-Grotesk-Light.ttf');
+}
+
+@font-face {
+    font-family: 'Neurial-Grotesk';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/Neurial-Grotesk-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Neurial-Grotesk';
+    font-style: medium;
+    font-weight: 500;
+    src: url('/fonts/Neurial-Grotesk-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Neurial-Grotesk';
+    font-style: medium;
+    font-weight: 600;
+    src: url('/fonts/Neurial-Grotesk-Bold.ttf');
+}
