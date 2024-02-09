@@ -1,20 +1,35 @@
 <script>
 // @ts-nocheck
     import axios from "axios";
+    import OpenAI from 'openai';
     const url = "https://api.cloudinary.com/v1_1/dnyyqiiay/image/upload";
+
+    const openai = new OpenAI({
+        apiKey: import.meta.env.VITE_OPENAI_KEY,
+        dangerouslyAllowBrowser: true
+    });
 
     let step = 1;
     let loading = false;
-    let petImg = "";
+    let petImg;
+    let completedImgs = [];
     let resultImg = "";
+    let test;
 
     async function uploadImage(event) {
         const file = event.target.files[0];
+
+        const fileSize = file.size;
+
+        console.log(fileSize)
+
+
         const formData = new FormData();
         formData.append('file', file);
 
         formData.append("upload_preset", "f5vq8k8j");
 
+        loading = true;
         fetch(url, {
             method: "POST",
             body: formData
@@ -24,55 +39,111 @@
         })
         .then((data) => {
             petImg = data.secure_url;
-        });
+            loading = false;
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
     }
 
-    const next = () => {
+    const next = async () => {
+        if(!petImg){
+            alert("Please upload a photo");
+            throw new Error('No photo uploaded');
+        }
+
+        let promptResponseData;
         loading = true;
 
-        const data = {
-            prompt: "Cinematic Portrait, Godly Beautiful french supermodel, dynamic lighting, [light + space of James Turrell + Bauhaus architectural forms], BeautyCore, Sharp Details --ar 21:9 --style raw"
-        };
-
-
-        fetch('http://cl.imagineapi.dev/items/images/', {
-            method: "POST",
-            headers: {
-                'Authorization': 'Bearer NGk5mP-rCE-AssOBIdlxEQ4ILpZlpziD',
-                'Content-Type': 'application/json'
+        const response = await openai.chat.completions.create({
+            model: "gpt-4-vision-preview",
+            messages: [
+                {
+                    role: "system",
+                    content: [
+                        { type: "text", text: "The purpose of the AI vision model is to do exactly what is asked. You will be processing pet images on the backend." },
+                    ],
+                },
+                {
+                    role: "user",
+                    content: [
+                    { type: "text", text: `Please describe this pet in great detail, including breed, specific age in months or years lean towards younger, coat, coat texture, ears, eyes, face shape, sizing, proportions, estimated weight, body parts, location of specific colors ect and specifically its face and the small details its owner would pick up on to midjourney so it can generate a replica of this specific dog perfectly. Only describe the pet itself not its background, environment, pose, expression ect. Clearly describe the most important details of this specific dog in 20-25 keywords ##output must begin with {“gpt-4-vision”: {“description_of_pet”: ""}}## ` },
+                    {
+                        type: "image_url",
+                        image_url: {
+                            "url": petImg,
+                            "detail": "high",
+                        },
+                    },
+                ],
             },
-            body: data
-        })
-        .then((response) => {
-            console.log(response.data);
-            loading = false;
-        }).catch(error => {
-            console.error(error);
-            loading = false;
+            
+            ],
+            max_tokens: 2000,
         });
         
-        /*
-        axios.post('http://cl.imagineapi.dev/items/images/', data, {
-            headers: {
-                'Authorization': 'Bearer NGk5mP-rCE-AssOBIdlxEQ4ILpZlpziD',
-                'Content-Type': 'application/json'
-            }
-        }).then(response => {
-            console.log(response.data);
-            loading = false;
-        }).catch(error => {
-            console.error(error);
-            loading = false;
-        });
-        */
+        test = response.choices[0].message.content;
+        console.log(response)
 
-        step++;
+        /*
+        const data = JSON.stringify({
+            prompt: `this dog from ${petImg} in Sahara camel safari. Wearing typical nomad outfit. Photo real, hyper detailed, 8k, high definition. 8k, 35mm lens`
+        });
+        
+        try {
+            const res = await axios.post('https://cl.imagineapi.dev/items/images/', data, {
+                headers: {
+                    'Authorization': 'Bearer xTDS5zn61KWlKahRTKNTODvcOr-pM5yo',
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            promptResponseData = res.data.data;
+            console.log(promptResponseData);
+        } catch (error) {
+            console.log("Error generating image", error);
+        }
+
+        const intervalId = setInterval(async function () {
+            try {
+                console.log('Checking image details');
+                
+                const res = await axios.get(`https://cl.imagineapi.dev/items/images/${promptResponseData.id}`, {
+                    headers: {
+                        'Authorization': 'Bearer xTDS5zn61KWlKahRTKNTODvcOr-pM5yo',
+                        'Content-Type': 'application/json'
+                    }
+                })
+        
+                const responseData = await res.data;
+                console.log(responseData, "test");
+
+                if (responseData.data.status === 'completed' || responseData.data.status === 'failed') {
+                    clearInterval(intervalId);
+                    console.log('Completed image detials', responseData.data);
+                    completedImgs = responseData.data.upscaled_urls
+                    loading = false;
+                    step++;
+                } else {
+                    console.log("Image is not finished generation. Status: ", responseData.data.status)
+                }
+            } catch (error) {
+                console.error('Error getting updates', error);
+                loading = false;
+                throw error;
+            }
+            
+        }, 5000);
+
+        */
     }
 </script>
 
 
 <div class="flex flex-col items-center justify-center w-screen h-screen">
     <h1 class="text-5xl font-bold mb-12">Cartoon your dog</h1>
+
+    <p>{test || ""}</p>
 
     {#if step === 1}
         <p class="text-semibold mb-2.5 text-gray-500 w-1/2 text-left">Upload a photo of your dog below</p>
@@ -88,7 +159,7 @@
             <input id="dropzone-file" type="file" on:change={uploadImage} class="hidden" />
         </label>
 
-        <button on:click={next} type="button" class="mt-10 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-1/2 flex justify-center">
+        <button disabled="{loading}" on:click={next} type="button" class="mt-10 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-1/2 flex justify-center">
             {#if loading}
                 <div role="status">
                     <svg aria-hidden="true" class="w-6 h-6 text-gray-200 animate-spin fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -102,7 +173,11 @@
             {/if}
         </button>
     {:else if step === 2}
-        <img src="#" alt="Result">
+        <div class="grid grid-cols-2 gap-6">
+            {#each completedImgs as img}
+                <img class="w-80 h-auto object-cover rounded-xl" src={img || ""} alt="Result Img 1">
+            {/each}
+        </div>
     {/if}
 
 </div> 
