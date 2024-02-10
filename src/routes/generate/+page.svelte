@@ -16,7 +16,7 @@
     //Images
     import heroNewCat from "$lib/assets/hero-new-cat.png";
 
-    let step = 3;
+    let step = 1;
     let loading = false;
 
     const secretStripeKey = import.meta.env.VITE_STRIPE_SECRET_KEY || process.env.VITE_STRIPE_SECRET_KEY;
