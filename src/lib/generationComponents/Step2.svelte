@@ -52,13 +52,13 @@
 <h2 class="mt-6 mb-2 font-medium text-gray-900 dark:text-white">For the best results:</h2>
 <ul class="text-sm max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
     <li>
-        At least 10 characters (and up to 100 characters)
+        Make sure your pet’s face is clearly visible
     </li>
     <li>
-        At least one lowercase character
+        Upload a few photos of your pet from different angles
     </li>
     <li>
-        Inclusion of at least one special character, e.g., ! @ # ?
+        Don’t stress - if the photos aren’t suitable we’ll reach to help. 
     </li>
 </ul>
 

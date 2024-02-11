@@ -1,4 +1,5 @@
 <script>
+    import Nav from "$lib/components/Nav.svelte";
     import gradient from "$lib/assets/gradient.png";
     import map from "$lib/assets/map.png";
     import heroOgCat from "$lib/assets/hero-og-cat.png";
@@ -42,32 +43,16 @@
 
 
 <div class="w-screen h-screen overflow-auto main-bg">
-    <div class="w-full h-hero radial-hero relative">
+    <div class="w-full h-fit min-h-full radial-hero relative">
         <!--Backgrounds-->
         <div class="absolute w-full h-full">
             <img class="absolute" src={gradient} alt="Just a lil gradient">
             <img class="w-5/6 left-24 absolute top-1/2 -translate-y-1/2" src={map} alt="Map background effect">
         </div>
 
-        <nav class="absolute z-10 w-full flex items-center justify-between py-4 px-8 md:px-14">
-            <div class="flex items-center gap-3">
-                <img class="h-7" src="https://img.icons8.com/ios-filled/50/ffffff/dog--v1.png" alt="Dog">
-                <p class="text-white text-xl font-semibold ">Adventure Pet</p>
-            </div>
+        <Nav/>
 
-            <div class="flex items-center gap-14">
-                <ul class="text-white text-sm font-medium items-center gap-10 hidden md:flex">
-                    <li>All Flight</li>
-                    <li>Schedule</li>
-                    <li>Passengers</li>
-                    <li>Your Orders</li>
-                </ul>
-
-                <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Let's Fly</button>
-            </div>
-        </nav>
-
-        <div class="w-full h-full absolute z-50 left-1/2 -translate-x-1/2 flex flex-col lg:flex-row">
+        <div class="pt-8 pb-10 lg:pb-0 w-full min-h-screen flex flex-col justify-center items-center gap-10 lg:gap-0 lg:justify-start lg:flex-row">
             <!--
             <div class="mb-8 h-full flex items-center gap-10">
                 <img class="h-full" src={heroOgCat} alt="Og Cat">
@@ -82,8 +67,8 @@
             -->
 
             
-            <div class="w-5/6 lg:w-1/2 h-full flex flex-col justify-end lg:justify-center items-end relative overflow-auto">
-                <h1 class="mb-3.5 text-white font-bold text-5xl lg:text-6xl w-hero relative">Fun 
+            <div class="order-2 lg:w-1/2 lg:h-full flex flex-col items-center justify-end lg:justify-center lg:items-end relative">
+                <h1 class="mb-3.5 text-white font-bold text-4xl md:text-6xl w-hero relative">Fun 
                     <span class="py-1 px-1.5 bg-purple-500">
                         Custom 
                     </span>
@@ -94,11 +79,11 @@
                     </span>
                     -->
                 </h1>
-                <p class="text-left font-medium text-gray-400 lg:text-lg w-hero">From climbing Mount Everest to lounging on a private jet - adventure awaits your pet. Get your poster, mug or blanket today!</p>
+                <p class="text-left font-medium text-gray-400 text-sm md:text-md lg:text-lg w-hero">From climbing Mount Everest to lounging on a private jet - adventure awaits your pet. Get your poster, mug or blanket today!</p>
                 
                 <div class="mt-11 w-hero">
-                    <a href="/generate" class="w-fit px-6 py-3 text-xl rounded-md text-white font-semibold bg-blue-600 hover:bg-blue-700 flex gap-1 items-center transition-all"><img class="h-6 rotate-6" src="https://img.icons8.com/material-rounded/50/ffffff/lightning-bolt--v1.png" alt="">Get Started in Minutes</a>
-                    <div class="mt-12 w-hero">
+                    <a href="/generate" class="w-fit px-6 py-3 md:text-xl rounded-md text-white font-semibold bg-blue-600 hover:bg-blue-700 flex gap-1 items-center transition-all"><img class="h-6 rotate-6" src="https://img.icons8.com/material-rounded/50/ffffff/lightning-bolt--v1.png" alt="">Get Started in Minutes</a>
+                    <div class="hidden lg:block mt-20 w-hero">
                         <div class="mb-2 flex">
                             <img class="relative w-11 h-11 rounded-full object-cover" src="https://i.ytimg.com/vi/9pNcL7ZKhcM/maxresdefault.jpg" alt="">
                             <img class="relative -left-4 w-11 h-11 rounded-full object-cover" src="https://patrick-oneil.com/wp-content/uploads/2017/08/crackhead.jpg" alt="">
@@ -111,8 +96,8 @@
             </div>
             
 
-            <div class="mx-auto justify-center lg:mx-0 lg:justify-start -mt-2 w-4/5 lg:w-1/2 h-full flex items-center pt-10">
-                <img class="w-hero" src="{heroImg}" alt="Traveling Cat">
+            <div class="w-full flex items-center justify-center md:justify-start md:w-3/4 lg:order-3 lg:-mt-4 lg:w-1/2 lg:h-full">
+                <img class="z-10 w-hero" src="{heroImg}" alt="Traveling Cat">
             </div>
         </div>
 
@@ -169,13 +154,13 @@
             -->
     </div>
 
-    <div class="mt-40 mx-auto w-5/6 flex gap-16 items-center justify-center">
-        <div class="w-1/2">
+    <div class="mt-24 md:mt-32 lg:mt-40 mx-auto w-5/6 flex flex-col lg:flex-row gap-16 items-center justify-center">
+        <div class="w-full lg:w-1/2">
             <h3 class="mb-14 text-4xl font-bold pr-2">Only the best for your lovely pet</h3>
 
-            <div class="grid grid-cols-2 gap-10">
+            <div class="grid md:grid-cols-2 gap-10">
                 <div>
-                    <div class="mb-2 flex items-center gap-2.5">
+                    <div class="mb-2 flex items-center gap-1.5 md:gap-2.5">
                         <img class="h-10 w-10 p-2.5 bg-white rounded-full object-cover flex items-center justify-center" src="https://img.icons8.com/material-rounded/100/in-transit.png" alt="">
                         <p class="font-medium">Free Next Day Shipping</p>
                     </div>
@@ -212,13 +197,13 @@
             </div>
         </div>
 
-        <img class="w-1/2 rounded-lg" src="https://cuddleclones.com/cdn/shop/files/pinkpaws-1_17_600x.png?v=1690806433" alt="">
+        <img class="w-full lg:w-1/2 rounded-lg" src="https://cuddleclones.com/cdn/shop/files/pinkpaws-1_17_600x.png?v=1690806433" alt="">
     </div>
 
-    <div class="mt-52 mx-auto w-5/6 flex gap-16 items-center justify-center">
-        <img class="w-1/2 p-10 rounded-lg" src={weOutside} alt="">
+    <div class="mt-52 mx-auto w-5/6 flex flex-col lg:flex-row gap-16 items-center justify-center">
+        <img class="w-full lg:w-1/2 md:p-10 rounded-lg" src={weOutside} alt="">
 
-        <div class="w-1/2">
+        <div class="w-full lg:w-1/2">
 
             <h3 class="mb-10 text-4xl font-bold">How It Works</h3>
 
@@ -261,7 +246,7 @@
     </div>
 
     <div class="mt-32 mx-auto w-5/6 border shadow-lg rounded-xl">
-        <ul class="w-full py-14 px-8 flex justify-around items-center">
+        <ul class="w-full py-14 px-8 flex justify-start items-center flex-wrap gap-8 lg:justify-around lg:gap-0">
             <li>
                 <img class="h-7 grayscale" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/CNN.svg/1200px-CNN.svg.png" alt="">
             </li>
@@ -295,26 +280,26 @@
             <p class="font-semibold text-blue-600 text-xl text-center">From skiing into the alps to acting as James Bond</p>
         </div>
         
-        <div class="w-full flex justify-between">
-            <img class="h-96" src={style1} alt="">
-            <img class="h-96 translate-y-10" src={style2} alt="">
-            <img class="h-96" src={style3} alt="">
-            <img class="h-96 translate-y-10" src={style4} alt="">
+        <div class="w-full flex gap-3 md:gap-4 justify-center lg:justify-between flex-wrap">
+            <img class="h-56 md:h-96" src={style1} alt="">
+            <img class="h-56 md:h-96 lg:translate-y-10" src={style2} alt="">
+            <img class="h-56 md:h-96" src={style3} alt="">
+            <img class="h-56 md:h-96 lg:translate-y-10" src={style4} alt="">
         </div>
 
         <a href="/generate" class="mt-16 w-fit px-5 py-2.5 text-lg rounded-md text-white font-semibold bg-blue-600 hover:bg-blue-700 flex gap-1 items-center transition-all"><img class="h-6 rotate-6" src="https://img.icons8.com/material-rounded/50/ffffff/lightning-bolt--v1.png" alt="Lightning Bolt">Get Started</a>
     </div>
 
     <div class="mt-44 mx-auto w-5/6 flex flex-col items-center">
-        <div class="mb-10">
+        <div class="mb-10 text-center">
             <p class="mb-3 font-semibold text-blue-600 text-xl text-center">What’s our customer saying</p>
             <h3 class="text-4xl font-bold">Our Customer Feedback</h3>
         </div>
 
         <div class="w-full flex gap-2 items-center">
-            <img class="w-1/2" src={customerMap} alt="">
+            <img class="hidden md:block w-2/5 lg:w-1/2" src={customerMap} alt="">
 
-            <div class="w-1/2">
+            <div class="w-full grow">
                 <div class="w-5/6 h-fit mx-auto bg-white flex flex-col gap-4 py-7 px-4 rounded-lg shadow-sm">
                     <div class="flex items-center gap-3.5">
                         <img class="h-14 w-14 object-cover rounded-full" src={reviews[currentReview].img} alt="Jaylon">
@@ -402,12 +387,12 @@
             <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Write a review</button>
         </div>
 
-        <div class="mt-6 grid grid-cols-5 gap-4 pb-20">
+        <div class="mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 pb-20">
             {#each Array(10) as _}
                 <div class="w-full rounded-md overflow-hidden">
                     <img class="w-full" src="https://popyourpup.com/cdn/shop/products/custom-pet-art-poster-135461.jpg?v=1618883960" alt="">
 
-                    <div class="pt-2.5 pl-3 pb-4 border border-gray-300 rounded-b-md">
+                    <div class="pt-2.5 px-3 pb-4 border border-gray-300 rounded-b-md">
                         <p class="font-semibold flex gap-2 items-center">Lilly <img class="h-5" src="https://img.icons8.com/sf-regular-filled/100/tiktok-verified-account.png" alt="Verified Review Icon"></p>
                         <p class="text-gray-400 text-xs">2/2/2024</p>
 

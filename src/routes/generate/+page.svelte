@@ -9,6 +9,7 @@
     import { addDoc, collection } from "firebase/firestore";
 
     //Components
+    import Nav from "$lib/components/Nav.svelte";
     import Step1 from "$lib/generationComponents/Step1.svelte";
     import Step2 from "$lib/generationComponents/Step2.svelte";
     import Step3 from "$lib/generationComponents/Step3.svelte";
@@ -178,9 +179,9 @@
     }
 </script>
 
-<div class="h-screen w-screen flex main-bg">
-    <div class="w-1/2 h-full flex flex-col justify-center items-center">
-        <div class="w-1/2 p-3 flex flex-col gap-14 relative">
+<div class="h-screen w-screen flex flex-col md:flex-row main-bg overflow-auto">
+    <div class="mb-32 pt-16 mx-auto w-5/6 flex flex-col justify-center items-center md:w-1/2 md:mb-0 md:h-full lg:mx-0 md:pt-0">
+        <div class="w-full md:w-3/4 lg:w-1/2 p-3 flex flex-col gap-14 relative">
             <div class="w-full relative">
                 <button class="absolute top-1/2 -translate-y-1/2 left-0 -translate-x-6 w-12 h-12 p-3.5 rounded-full bg-gray-100 rotate-180 opacity-90 hover:opacity-100 hover:scale-105 transition-all"><img src="https://img.icons8.com/metro/50/forward.png" alt=""></button>
                 <img class="w-full" src={heroNewCat} alt="Current review">
@@ -189,19 +190,19 @@
 
             <div class="px-2 text-center text-gray-700 italic text-sm relative">
                 <img class="w-16 ml-8 absolute -top-7" src="https://img.icons8.com/ios-filled/200/d6dbe4/quote-left.png" alt="Quotation"> 
-                <p class="absolute z-10">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form. <br> <span class="font-medium text-black">- Topper Brown </span> </p>
+                <p class="absolute z-10 ">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form. <br> <span class="font-medium text-black">- Topper Brown </span> </p>
             </div>
             
         </div>
     </div>
 
-    <div class="w-1/2 h-full bg-gray-200 rounded-l-3xl pt-24 pl-16 pr-20 relative overflow-auto">
-        <h1 class="mb-2 text-4xl font-semibold">Create Your Pet Portrait 🎉</h1>
+    <div class="w-full flex flex-col bg-gray-200 px-10 pt-16 relative md:w-1/2 md:pt-24 lg:h-full lg:rounded-l-3xl lg:px-0 lg:pl-16 lg:pr-20 md:overflow-scroll">
+        <h1 class="mb-2 text-4xl font-semibold lg:text-4xl">Custom Pet Portrait 🐶</h1>
         <div class="flex items-center gap-1">
             <img class="h-7 brightness-0" src="https://static.vecteezy.com/system/resources/thumbnails/009/343/315/small/five-stars-in-row-glossy-yellow-color-customer-rating-feedback-concept-from-the-client-about-employee-of-website-abstract-3d-render-png.png" alt="">
             <p>15,124</p>
         </div>
-        <p class="mt-2 text-2xl font-semibold">$32.00</p>
+        <p class="mt-2.5 md:mt-2 text-2xl font-semibold">$32.00</p>
     
         {#if step === 1}
             <!--

@@ -26,7 +26,7 @@
 
 </script>
 
-<h2 class="mt-8 text-lg font-medium flex items-center gap-2">Final step, choose an item to display your pet
+<h2 class="mt-8 text-lg font-medium flex items-center gap-2">Final step, select an item to display your new portrait
     <button data-popover-target="popover-description" data-popover-placement="bottom-end" type="button"><svg class="w-5 h-5 text-gray-400 hover:text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg><span class="sr-only">Show information</span></button>
     <div data-popover id="popover-description" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
         <div class="p-3 space-y-2">
@@ -42,9 +42,9 @@
     </div> 
 </h2>
 
-<p class="text-sm text-gray-500">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, dolorem inventore! Culpa ist.</p>
+<p class="mt-1.5 text-sm text-gray-500">Select from a collection of handcrafted items made with the highest-grade materials. Don’t worry, there's no additional cost.</p>
 
-<div class="mt-6 w-full flex flex-wrap gap-y-8 gap-x-11">
+<div class="mt-8 w-full flex-wrap flex gap-y-3 gap-x-5 lg:gap-y-7 lg:gap-x-10">
     <div on:click={selectItem}>
         <img class="mb-2 box-size rounded-xl shadow-sm border border-gray-400 object-cover" src="https://images.loox.io/uploads/2024/1/17/eIxaVNs1Hb.jpg" alt="">
         <p class="text-lg text-center font-medium">Poster</p>
@@ -63,8 +63,8 @@
 
 {#if selectedItem === "Poster"}
     <div>
-        <p class="mt-6 text-lg font-medium flex items-center gap-2">What size would you like for ya poster?</p>
-        <div class="mt-4 w-full flex flex-wrap gap-y-8 gap-x-11">
+        <p class="mt-6 text-lg font-medium flex items-center gap-2">Choose a Poster Size:</p>
+        <div class="mt-4 w-full flex flex-wrap gap-y-3 gap-x-5 lg:gap-y-7 lg:gap-x-10">
             <div on:click={selectSize}>
                 <img class="mb-2 h-32 w-32 rounded-xl shadow-sm border border-gray-400 object-cover" src={sizingSmall} alt="">
                 <p class="text-center font-medium">Medium 16"x24"</p>
@@ -83,8 +83,8 @@
     </div>
     {:else if selectedItem === "Blanket"}
     <div>
-        <p class="mt-6 text-lg font-medium flex items-center gap-2">What size would you like fo ya blanket?</p>
-        <div class="mt-4 w-full flex flex-wrap gap-y-8 gap-x-11">
+        <p class="mt-6 text-lg font-medium flex items-center gap-2">Choose a Blanket Size:</p>
+        <div class="mt-4 w-full flex flex-wrap gap-y-3 gap-x-5 lg:gap-y-7 lg:gap-x-10">
             <div on:click={selectSize}>
                 <img class="mb-2 h-32 w-32 rounded-xl shadow-sm border border-gray-400 object-cover" src={sizingSmall} alt="">
                 <p class="text-center font-medium">Medium 16"x24"</p>
@@ -103,7 +103,7 @@
     </div>
 {/if}
 
-<div class="mt-8 mb-12">
-    <label for="first_name" class="block mb-2 font-medium text-gray-900">What's a good name for lil bro?</label>
+<div class="mt-8 mb-5">
+    <label for="first_name" class="block mb-2 font-medium text-gray-900">What's your pet name?</label>
     <input bind:value={name} on:input={nameInput} type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="John" required>
 </div>
