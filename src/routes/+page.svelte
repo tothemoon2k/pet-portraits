@@ -156,7 +156,7 @@
 
     <div class="mt-24 md:mt-32 lg:mt-40 mx-auto w-5/6 flex flex-col lg:flex-row gap-16 items-center justify-center">
         <div class="w-full lg:w-1/2">
-            <h3 class="mb-14 text-4xl font-bold pr-2">Only the best for your lovely pet</h3>
+            <h3 class="mb-14 text-4xl font-bold pr-2">Only the <span class="underline decoration-blue-500 decoration-8">best</span> for your lovely pet</h3>
 
             <div class="grid md:grid-cols-2 gap-10">
                 <div>

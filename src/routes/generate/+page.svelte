@@ -56,7 +56,7 @@
                 {item: 'Blanket', size: 'Medium 16"x24"', price: 24.99, priceId: 'price_1OhHH8Ee5blDhv50oI2mj65z'},
                 {item: 'Blanket', size: 'Large 20"x30"', price: 24.99, priceId: 'price_1OhHHMEe5blDhv505VXxgYzA'},
                 {item: 'Blanket', size: 'Huge 24"x36"', price: 24.99, priceId: 'price_1OhHHZEe5blDhv50v9F4uvEm'},
-                {item: 'Ceramic Mug', size: null, price: 24.99, priceId: 'price_1OhHHqEe5blDhv50EAg3hRcY'},
+                {item: 'Ceramic Mug', size: null, price: 0.50, priceId: 'price_1OkEuDEe5blDhv50sBmY7MY3'},
             ]
 
             const matchingPrice = priceIds.find(price => {
@@ -65,6 +65,8 @@
             });
 
             const docRef = await addDoc(collection(db, "orders"), order);
+
+            console.log(matchingPrice)
 
             await fetch("/api/stripe/checkout", {
                 method: "POST",

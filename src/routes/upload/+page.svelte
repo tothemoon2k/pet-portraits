@@ -52,6 +52,8 @@
             throw new Error('No photo uploaded');
         }
 
+        console.log(petImg);
+
         let promptResponseData;
         loading = true;
 
